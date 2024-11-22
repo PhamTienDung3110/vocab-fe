@@ -1,19 +1,40 @@
-import React, { useState } from "react";
-import { Speech } from "react-speech";
+import React, { useEffect, useState } from "react";
+import { useSpeechSynthesis } from "react-speech-kit";
 
-const LearningType3 = ({ word, onNext }) => {
+const LearningType2 = ({ word, onNext, allWords }) => {
+  const { speak } = useSpeechSynthesis();
+
   const [selected, setSelected] = useState(null);
   const [feedback, setFeedback] = useState("");
+  const [options, setListOptions] = useState([]);
 
-  const options = [
-    word.word,
-    "Option 1",
-    "Option 2",
-    "Option 3",
-  ].sort(() => Math.random() - 0.5);
+  function getRandomItems(array, count) {
+    console.log(array);
+    if (array.length <= count) {
+      return array;
+    }
+
+    return array.sort(() => Math.random() - 0.5).slice(0, count);
+  }
+
+  useEffect(() => {
+    const options = [
+      word.meaning,
+      ...getRandomItems(allWords, 3).map((ele) => ele.meaning),
+    ].sort(() => Math.random() - 0.5);
+
+    setListOptions(options);
+  }, [allWords, word]);
+
+  const handleOnNext = () => {
+    setSelected(null);
+    setFeedback("");
+    setListOptions([]);
+    onNext();
+  };
 
   const checkAnswer = () => {
-    if (selected === word.word) {
+    if (selected === word.meaning) {
       setFeedback("Correct!");
     } else {
       setFeedback("Wrong!");
@@ -23,19 +44,16 @@ const LearningType3 = ({ word, onNext }) => {
   return (
     <div>
       <h2>Listen and choose the correct word</h2>
-      <Speech
-        text={word.word}
-        voice="Google UK English Male"
-        textAsButton={true}
-        displayText="🔊 Play"
-      />
+      <button onClick={() => speak({ text: word.word })}>
+        🔊 Play
+      </button>
       {options.map((option, index) => (
         <div key={index}>
           <input
             type="radio"
             id={`option-${index}`}
-            name="audio"
-            value={option}
+            name="meaning"
+            value={selected}
             onChange={() => setSelected(option)}
           />
           <label htmlFor={`option-${index}`}>{option}</label>
@@ -43,9 +61,9 @@ const LearningType3 = ({ word, onNext }) => {
       ))}
       <button onClick={checkAnswer}>Check</button>
       {feedback && <p>{feedback}</p>}
-      {feedback === "Correct!" && <button onClick={onNext}>Next</button>}
+      {feedback === "Correct!" && <button onClick={handleOnNext}>Next</button>}
     </div>
   );
 };
 
-export default LearningType3;
+export default LearningType2;

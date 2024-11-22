@@ -12,9 +12,16 @@ const LearningType1 = ({ word, onNext }) => {
     }
   };
 
+  const handleOnNext = () => {
+    setInput('');
+    setFeedback('');
+    onNext();
+  }
+
   return (
     <div>
-      <h2>Type the word</h2>
+      <h2>Type the word meaning</h2>
+      <p>{word?.meaning}</p>
       <input
         type="text"
         value={input}
@@ -22,7 +29,7 @@ const LearningType1 = ({ word, onNext }) => {
       />
       <button onClick={checkAnswer}>Check</button>
       {feedback && <p>{feedback}</p>}
-      {feedback === "Correct!" && <button onClick={onNext}>Next</button>}
+      {feedback === "Correct!" && <button onClick={handleOnNext}>Next</button>}
     </div>
   );
 };

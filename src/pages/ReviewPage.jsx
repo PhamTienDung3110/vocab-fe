@@ -13,6 +13,7 @@ const ReviewPage = () => {
   useEffect(() => {
     const fetchWords = async () => {
       const { data } = await fetchReviewWords();
+      console.log('data',data);
       setWords(data);
     };
     fetchWords();
@@ -35,9 +36,9 @@ const ReviewPage = () => {
 
   const types = [
     <LearningType1 word={words[currentType * 3 + currentIndex]} onNext={handleNext} />,
-    <LearningType2 word={words[currentType * 3 + currentIndex]} onNext={handleNext} />,
-    <LearningType3 word={words[currentType * 3 + currentIndex]} onNext={handleNext} />,
-    <LearningType4 word={words[currentType * 3 + currentIndex]} onNext={handleNext} />,
+    <LearningType2 allWords={words} word={words[currentType * 3 + currentIndex]} onNext={handleNext} />,
+    <LearningType3 allWords={words} word={words[currentType * 3 + currentIndex]} onNext={handleNext} />,
+    // <LearningType4 allWords={words} word={words[currentType * 3 + currentIndex]} onNext={handleNext} />,
   ];
 
   return (
