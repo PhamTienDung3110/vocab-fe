@@ -12,10 +12,10 @@ const Dashboard = ({ setLoggedIn }) => {
   return (
     <div>
       <h1>Dashboard</h1>
-      <button onClick={handleLogout}>Logout</button>
       <AddVocabularyForm />
       <VocabularyList />
       <ReviewWords />
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };
