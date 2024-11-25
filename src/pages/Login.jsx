@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { login } from "../api";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setLoggedIn }) => {
   const [formData, setFormData] = useState({ username: "", password: "" });
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -16,6 +18,7 @@ const Login = ({ setLoggedIn }) => {
   };
 
   return (
+    <>
     <form onSubmit={handleLogin}>
       <h2>Login</h2>
       <input
@@ -32,6 +35,8 @@ const Login = ({ setLoggedIn }) => {
       />
       <button type="submit">Login</button>
     </form>
+    <button onClick={() => navigate("/register")}>Register</button>
+    </>
   );
 };
 
