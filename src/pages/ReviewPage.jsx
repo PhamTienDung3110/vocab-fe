@@ -13,8 +13,7 @@ const ReviewPage = () => {
   useEffect(() => {
     const fetchWords = async () => {
       const { data } = await fetchReviewWords();
-      console.log('data',data);
-      setWords(data);
+      setWords(data.sort(() => Math.random() - 0.5));
     };
     fetchWords();
   }, []);

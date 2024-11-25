@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ReviewWords = () => {
-  const [words, setWords] = useState([]);
   const navigate = useNavigate();
 
   return (
