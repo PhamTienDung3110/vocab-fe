@@ -34,11 +34,11 @@ const ReviewPage = () => {
   }
 
   const types = [
-    <LearningType1 word={words[currentType * 3 + currentIndex]} onNext={handleNext} />,
-    <LearningType2 allWords={words} word={words[currentType * 3 + currentIndex]} onNext={handleNext} />,
-    <LearningType3 allWords={words} word={words[currentType * 3 + currentIndex]} onNext={handleNext} />,
+    <LearningType1 word={words[currentType * 4 + currentIndex]} onNext={handleNext} />,
+    <LearningType2 allWords={words} word={words[currentType * 4 + currentIndex]} onNext={handleNext} />,
+    <LearningType3 allWords={words} word={words[currentType * 4 + currentIndex]} onNext={handleNext} />,
     // <LearningType4 allWords={words} word={words[currentType * 3 + currentIndex]} onNext={handleNext} />,
-  ];
+  ].sort(() => Math.random() - 0.5);
 
   return (
     <div>

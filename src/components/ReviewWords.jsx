@@ -7,6 +7,7 @@ const ReviewWords = () => {
   return (
     <div>
       <button onClick={() => navigate("/review")}>Start Review</button>
+      <button onClick={() => navigate("/review")}>Start Study</button>
     </div>
   );
 };

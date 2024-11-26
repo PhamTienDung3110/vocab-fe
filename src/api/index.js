@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://vocab-be.vercel.app/api",
+  baseURL: `${import.meta.env.VITE_API_URL}/api` || 'https://vocab-be.vercel.app/api',
 });
 
 API.interceptors.request.use((req) => {
