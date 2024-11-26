@@ -18,13 +18,13 @@ const AddVocabularyForm = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  const [formData, setFormData] = useState({ word: "", meaning: "", example: "" });
+  const [formData, setFormData] = useState({ word: "", meaning: "", example: "", type: "" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await addVocabulary(formData);
     alert("Word added successfully!");
-    setFormData({ word: "", meaning: "", example: "" });
+    setFormData({ word: "", meaning: "", example: "", type: "" });
   };
 
   return (
@@ -58,6 +58,12 @@ const AddVocabularyForm = () => {
               placeholder="Example"
               value={formData.example}
               onChange={(e) => setFormData({ ...formData, example: e.target.value })}
+            />
+             <input
+              type="text"
+              placeholder="Type"
+              value={formData.type}
+              onChange={(e) => setFormData({ ...formData, type: e.target.value })}
             />
             <button type="submit">Add Word</button>
           </form>
