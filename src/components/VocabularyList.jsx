@@ -41,8 +41,16 @@ const VocabularyList = () => {
 
   const handleSubmitChange =  async (e) => {
     e.preventDefault();
-    await updateVocabulary(wordSelect);
-    alert("Word updated successfully!");
+    await updateVocabulary(wordSelect)
+    .then(res => {
+      if (res.status === 200) {
+        setVocabulary(prevVocabulary => 
+          prevVocabulary.map(item => 
+            item._id === wordSelect._id ? res.data : item
+          )
+        );
+      }
+    })
     setWordSelect({ word: "", meaning: "", example: "", type: "" });
   }
 
@@ -55,7 +63,7 @@ const VocabularyList = () => {
   }, []);
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="outlined" onClick={handleClickOpen}> 
         List words
       </Button>
       <Dialog
