@@ -113,12 +113,6 @@ const VocabularyList = () => {
             />
             <input
               type="text"
-              placeholder="Example"
-              value={wordSelect?.example}
-              onChange={e => setWordSelect({...wordSelect, example: e.target.value})}
-            />
-            <input
-              type="text"
               placeholder="Type"
               value={wordSelect?.type}
               onChange={e => setWordSelect({...wordSelect, type: e.target.value})}

@@ -7,6 +7,7 @@ import LearningType4 from "../components/LearningType4";
 
 const ReviewPage = () => {
   const [words, setWords] = useState([]);
+  const [wordOnePart, setWordOnePart] = useState(1);
   const [currentType, setCurrentType] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -14,6 +15,7 @@ const ReviewPage = () => {
     const fetchWords = async () => {
       const { data } = await fetchReviewWords();
       setWords(data.sort(() => Math.random() - 0.5));
+      setWordOnePart(Math.round(data?.length / 3));
     };
     fetchWords();
   }, []);
@@ -34,9 +36,9 @@ const ReviewPage = () => {
   }
 
   const types = [
-    <LearningType1 word={words[currentType * 4 + currentIndex]} onNext={handleNext} />,
-    <LearningType2 allWords={words} word={words[currentType * 4 + currentIndex]} onNext={handleNext} />,
-    <LearningType3 allWords={words} word={words[currentType * 4 + currentIndex]} onNext={handleNext} />,
+    <LearningType1 word={words[currentType * wordOnePart + currentIndex]} onNext={handleNext} />,
+    <LearningType2 allWords={words} word={words[currentType * wordOnePart + currentIndex]} onNext={handleNext} />,
+    <LearningType3 allWords={words} word={words[currentType * wordOnePart + currentIndex]} onNext={handleNext} />,
     // <LearningType4 allWords={words} word={words[currentType * 3 + currentIndex]} onNext={handleNext} />,
   ].sort(() => Math.random() - 0.5);
 

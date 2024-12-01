@@ -53,12 +53,6 @@ const AddVocabularyForm = () => {
               value={formData.meaning}
               onChange={(e) => setFormData({ ...formData, meaning: e.target.value })}
             />
-            <input
-              type="text"
-              placeholder="Example"
-              value={formData.example}
-              onChange={(e) => setFormData({ ...formData, example: e.target.value })}
-            />
              <input
               type="text"
               placeholder="Type"
